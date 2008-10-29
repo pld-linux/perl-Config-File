@@ -41,11 +41,13 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} pure_install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm $RPM_BUILD_ROOT%{perl_vendorlib}/ConfigFile.pm
+rm $RPM_BUILD_ROOT%{_mandir}/man3/ConfigFile.3pm
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{perl_vendorlib}/ConfigFile.pm
 %{perl_vendorlib}/Config/File.pm
 %{_mandir}/man3/*
