@@ -15,6 +15,7 @@ License:	LGPL
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Config/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	0a01e87cf799ca24cab941b18ef24514
+URL:		http://search.cpan.org/dist/Config-File/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildArch:	noarch
