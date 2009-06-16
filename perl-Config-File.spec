@@ -9,15 +9,19 @@
 %define		pnam	File
 Summary:	Config-File - Parse a simple configuration file
 Name:		perl-Config-File
-Version:	1.41
-Release:	0.1
-License:	LGPL
+Version:	1.50
+Release:	1
+License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/Config/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	0a01e87cf799ca24cab941b18ef24514
+# Source0-md5:	ea1f012b4336697be1c2e4cc2c3396e0
 URL:		http://search.cpan.org/dist/Config-File/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+%if %{with tests}
+BuildRequires:	perl-Test-Pod
+BuildRequires:	perl-Test-Pod-Coverage
+%endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -29,25 +33,24 @@ values in an anonymous hash reference.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-%{__perl} Makefile.PL \
-	INSTALLDIRS=vendor
-%{__make}
+%{__perl} Build.PL \
+	destdir=$RPM_BUILD_ROOT \
+	installdirs=vendor
+./Build
 
-%{?with_tests:%{__make} test}
+%{?with_tests:./Build test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} pure_install \
+./Build install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-rm $RPM_BUILD_ROOT%{perl_vendorlib}/ConfigFile.pm
-rm $RPM_BUILD_ROOT%{_mandir}/man3/ConfigFile.3pm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{perl_vendorlib}/Config/File.pm
+%doc CHANGES README
+%{perl_vendorlib}/Config/*.pm
 %{_mandir}/man3/*
