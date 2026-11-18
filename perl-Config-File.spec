@@ -8,12 +8,12 @@
 %define		pnam	File
 Summary:	Config-File - Parse a simple configuration file
 Name:		perl-Config-File
-Version:	1.50
+Version:	1.54
 Release:	1
 License:	GPL
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/Config/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	ea1f012b4336697be1c2e4cc2c3396e0
+Source0:	https://www.cpan.org/authors/id/T/TH/THESEAL/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	cb43558413d78a7b868dd91d9837a3f8
 URL:		http://search.cpan.org/dist/Config-File/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
